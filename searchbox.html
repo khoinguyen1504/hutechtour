@@ -193,6 +193,34 @@ function displayTours(tours) {
     const container = document.getElementById('searchResults');
     container.innerHTML = '';
 
+    if (tours.length === 0) {
+        container.style.display = 'flex';
+        container.style.justifyContent = 'center';
+        container.style.alignItems = 'center';
+        container.style.height = '300px'; // enough height to center vertically
+
+        const message = document.createElement('p');
+        message.textContent = 'Xin lỗi, không tìm thấy tour phù hợp.';
+        message.style.fontSize = '20px';
+        message.style.color = '#fff';
+        message.style.backgroundColor = '#7a6752'; /* classic brown */
+        message.style.padding = '15px';
+        message.style.borderRadius = '8px';
+        message.style.textAlign = 'center';
+        message.style.fontFamily = "'Playfair Display', serif";
+        message.style.fontWeight = '600';
+        message.style.width = '80%';
+
+        container.appendChild(message);
+        return;
+    } else {
+        container.style.display = 'grid';
+        container.style.gridTemplateColumns = 'repeat(4, 1fr)';
+        container.style.gap = '15px';
+        container.style.marginTop = '20px';
+        container.style.height = 'auto';
+    }
+
     const start = (currentPage - 1) * itemsPerPage;
     const end = start + itemsPerPage;
 
